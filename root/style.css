@@ -1,22 +1,39 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
-.germany {
-  fill: red;
+header {
+  background-color: #e84d74;
+  text-align: center;
+  padding: 4vh;
 }
+
+.länk {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
 .test {
-  margin: 10%;
-  
+  margin: 0;
+  overflow: hidden;
 }
 
-.berlin{
+.berlin {
   fill: red;
+  cursor: pointer;
 }
 
-.berlin:hover{
+.berlin:hover {
   fill: green;
-  
 }
- 
+
+footer {
+  background-color: #e84d74;
+  text-align: center;
+  padding: 20px 0;
+}
