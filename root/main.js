@@ -20,12 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const newViewBox = `${cx - zoomWidth / 2} ${cy - zoomHeight / 2} ${zoomWidth} ${zoomHeight}`;
   
       svg.setAttribute("viewBox", newViewBox);
+        // display the infopanel once clicked
+        const point = svg.createSVGPoint();
+        point.x = cx;
+        point.y = cy;
+        const screenCTM = berlin.getScreenCTM();
+        const transformed = point.matrixTransform(screenCTM);
+      
+        // Position the info panel next to Berlin, is a little bit off and should be fixed
+        const panel = document.getElementById("infoPanel");
+        panel.style.left = `${transformed.x}px`; 
+        panel.style.top = `${transformed.y}px`; 
+        panel.classList.remove("hidden");
     });
     
-    //when click on something that is not the red circle, revert back to old viewbox
+    //when click on something that is not the red circle, revert back to old viewbox and remove textbox
     svg.addEventListener("click", (e) => {
       if (!e.target.classList.contains('berlin')) {
         svg.setAttribute("viewBox", originalViewBox);
+        // Hide the info panel
+         document.getElementById("infoPanel").classList.add("hidden");
       }
     });
     
@@ -34,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       
         // Base coordinates for explosions:
         //TODO: ZERO IN CORRECT COORDINATES FOR GERMANY RIGHT NOW IN SMALL TOP AREA
-        const cx = 550 + Math.random() * 150;
-        const cy = 350 + Math.random() * 100;
+        const cx = 450 + Math.random() * 350;
+        const cy = 350 + Math.random() * 200;
       
         // Create dirt from artillery explosion(8)
         const particleCount = 16;
