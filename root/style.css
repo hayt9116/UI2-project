@@ -32,6 +32,32 @@ header {
   fill: green;
 }
 
+.explosion-particle {
+  fill: #4e3e2c; 
+  opacity: .01;
+  animation: dirtBlast 1.5s cubic-bezier(0.8, 0, 0.3, 1) backwards
+}
+
+@keyframes dirtBlast {
+  0% {
+    r: 0;
+    opacity: 1;
+  }
+  40% {
+    r: 4;
+    opacity: 0.8;
+  }
+  80% {
+    r: 2;
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy));
+    r: 1;
+    opacity: 0;
+  }
+}
+
 footer {
   background-color: #e84d74;
   text-align: center;
