@@ -21,17 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
   
       svg.setAttribute("viewBox", newViewBox);
         // display the infopanel once clicked
-        const point = svg.createSVGPoint();
-        point.x = cx;
-        point.y = cy;
-        const screenCTM = berlin.getScreenCTM();
-        const transformed = point.matrixTransform(screenCTM);
-      
-        // Position the info panel next to Berlin, is a little bit off and should be fixed
-        const panel = document.getElementById("infoPanel");
-        panel.style.left = `${transformed.x}px`; 
-        panel.style.top = `${transformed.y}px`; 
-        panel.classList.remove("hidden");
+       /*
+       const point = svg.createSVGPoint();
+       point.x = cx;
+       point.y = cy;
+       const screenCTM = berlin.getScreenCTM();
+       const transformed = point.matrixTransform(screenCTM);
+       
+       // Position the info panel next to Berlin, is a little bit off and should be fixed
+       const panel = document.getElementById("infoPanel");
+       panel.style.left = `${transformed.x}px`; 
+       panel.style.top = `${transformed.y}px`; 
+       */
+       document.getElementById("infoPanel").classList.remove("hidden"); 
+       //panel.classList.remove("hidden");
     });
     
     //when click on something that is not the red circle, revert back to old viewbox and remove textbox

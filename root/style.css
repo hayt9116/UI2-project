@@ -21,6 +21,7 @@ header {
 .test {
   margin: 0;
   overflow: hidden;
+  position: relative;
 }
 
 .berlin {
@@ -32,20 +33,18 @@ header {
   fill: green;
 }
 
-.info-panel {
+#infoPanel {
   position: absolute;
-  top: 100px;
-  right: 50px;
-  width: 250px;
-  padding: 20px;
-  background-color: #ffffffdd;
-  border: 2px solid #888;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: opacity 0.3s ease;
-  z-index: 10;
+  top: 80vh;           
+  left: 7vw;           
+  bottom: 50vh;        
+  width: 30vw;
+  background-color: #ffffffee;
+  padding: 1rem;
+  overflow-y: auto;
+  border: 20px solid #ff000d;
+  
 }
-
 .hidden {
   display: none;
 }
