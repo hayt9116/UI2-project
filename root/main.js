@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //Stores the svg and circle(Berlin) element from index
     const svg = document.getElementById("map");
     const berlin = document.querySelector(".berlin");
+    const dunkirk = document.querySelector(".dunkirk");
     //save original viewbox before transformation
     const originalViewBox = svg.getAttribute("viewBox");
   
@@ -21,16 +22,38 @@ document.addEventListener("DOMContentLoaded", () => {
   
       svg.setAttribute("viewBox", newViewBox);
        document.getElementById("infoPanel").classList.remove("hidden"); 
+       document.getElementById("spriteanim").classList.remove("hidden");
+    });
+
+    dunkirk.addEventListener("click", (e) => {
+    // e.stopPropagation();
+        
+    //retrieves X and Y coordinates for Berlin
+      const cx = parseFloat(dunkirk.getAttribute("cx"));
+      const cy = parseFloat(dunkirk.getAttribute("cy"));
+
+    //How much to zoom in the lower the value the more zoomed in
+      const zoomWidth = 200; 
+      const zoomHeight = 200;
+    //calculate new viewbox
+      const newViewBox = `${cx - zoomWidth / 2 - 30} ${cy - zoomHeight / 2} ${zoomWidth} ${zoomHeight}`;
+  
+      svg.setAttribute("viewBox", newViewBox);
+       document.getElementById("infoPanel").classList.remove("hidden"); 
     });
     
     //when click on something that is not the red circle, revert back to old viewbox and remove textbox
     svg.addEventListener("click", (e) => {
-      if (!e.target.classList.contains('berlin')) {
+      
+      // if (!e.target.classList.contains(locations))
+      if (!(e.target.classList.contains('berlin')|| e.target.classList.contains('dunkirk')) ) {
         svg.setAttribute("viewBox", originalViewBox);
         // Hide the info panel
          document.getElementById("infoPanel").classList.add("hidden");
+         document.getElementById("spriteanim").classList.add("hidden");
       }
     });
+    
     
     function spawnExplosion() {
         const explosionsGroup = document.getElementById("explosions");
@@ -76,5 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       var audio = document.getElementById("war");
       audio.volume = 0.07;
+
+    let img = new Image();
+    img.onload = function() {
+    context.drawImage(img, 10, 10);
+    };
+    img.src = 'https://img.craftpix.net/2023/01/Free-Soldier-Sprite-Sheets-Pixel-Art4-1536x1024.webp';
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.drawImage(img, -25, 0, 250, 250);
+    
+
   });
   
