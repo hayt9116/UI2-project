@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const newViewBox = `${cx - zoomWidth / 2 - 30} ${cy - zoomHeight / 2} ${zoomWidth} ${zoomHeight}`;
   
       svg.setAttribute("viewBox", newViewBox);
-       document.getElementById("infoPanel").classList.remove("hidden"); 
+       document.getElementById("infoPanel_d").classList.remove("hidden"); 
     });
     
     //when click on something that is not the red circle, revert back to old viewbox and remove textbox
@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
         svg.setAttribute("viewBox", originalViewBox);
         // Hide the info panel
          document.getElementById("infoPanel").classList.add("hidden");
+         document.getElementById("infoPanel_d").classList.add("hidden");
          document.getElementById("spriteanim").classList.add("hidden");
       }
     });
-    
     
     function spawnExplosion() {
         const explosionsGroup = document.getElementById("explosions");

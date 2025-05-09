@@ -63,6 +63,19 @@ header {
   
 }
 
+#infoPanel_d {
+  position: absolute;
+  top: 50vh;           
+  left: 7vw;           
+  bottom: 20vh;        
+  width: 30vw;
+  background-color: #ffffffee;
+  padding: 1rem;
+  overflow-y: auto;
+  border: 20px solid #ff000d;
+  
+}
+
 #spriteanim {
   position: absolute;
   top: 50vh;           
