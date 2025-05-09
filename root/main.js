@@ -68,12 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // randomly assign next explosion timer
         const delay = 2000 + Math.random() * 2000; // 3000–6000 ms
         setTimeout(scheduleExplosion, delay);
-      }
-      
+      }      
       // Schedule three separate explosions to simulate even more randomness
       scheduleExplosion();
       scheduleExplosion();
       scheduleExplosion();
 
+      var audio = document.getElementById("war");
+      audio.volume = 0.07;
   });
   
