@@ -97,18 +97,54 @@ document.addEventListener("DOMContentLoaded", () => {
       scheduleExplosion();
       scheduleExplosion();
 
+      //Adjust volume of background music
       var audio = document.getElementById("war");
       audio.volume = 0.07;
 
-    let img = new Image();
-    img.onload = function() {
-    context.drawImage(img, 10, 10);
+      //initiate image from URL
+      const img = new Image();
+      img.src = 'https://thumbs.dreamstime.com/b/us-soldier-shooting-sprite-vector-cartoon-animation-sequence-sheet-55787397.jpg?w=768';
+  
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+  
+      const numColumns = 2;
+      const numRows = 2;
+      const scale = 2.5;
+      let currentFrame = 0;
+  
+      //Load the image
+      img.onload = function() {
+        const frameWidth = img.width / numColumns;
+        const frameHeight = img.height / numRows;
+        const maxFrame = numColumns * numRows - 1;
+  
+        //Interval/animation function
+        setInterval(function () {
+          
+          // Calculate row and column for the current frame
+          const column = currentFrame % numColumns;
+          const row = Math.floor(currentFrame / numColumns);
+  
+          // Clear canvas
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+          // Draw current frame
+          ctx.drawImage(
+            img,
+            column * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight,
+            50, 50,
+            frameWidth / scale,
+            frameHeight / scale
+          );
+  
+          // Advance frame
+          currentFrame = (currentFrame + 1) % (maxFrame + 1);
+        }, 300);
     };
-    img.src = 'https://img.craftpix.net/2023/01/Free-Soldier-Sprite-Sheets-Pixel-Art4-1536x1024.webp';
-
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.drawImage(img, -25, 0, 250, 250);
     
 
   });
