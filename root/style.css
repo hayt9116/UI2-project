@@ -9,6 +9,23 @@ header {
   padding: 4vh;
 }
 
+svg {
+  background-color: #7fcdff !important;
+}
+
+#German_Reich, 
+#Kingdom_of_Italy
+{
+  fill: #4B4B4B !important;
+}
+
+#French_Republic,
+#Republic_of_Poland,
+#United_Kingdom
+{
+  fill: #000080 !important;
+}
+
 .svg-container {
   flex-grow: 1;
   width: 100%;

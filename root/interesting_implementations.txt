@@ -1,0 +1,35 @@
+1:(feasbile to implement) Submarines in atlantic, other battle to insert(battle of the atlantic)
+BIG PROBLEM: OCEAN IS NOT PART OF SVG AND CANT BE CLICKED TO ZOOM OUT, 
+needs to be adressed if it should be implemented.
+
+2:(Pretty hard): update the map, right now it is 1938/7 and not very interesting since world not at war yet,
+need to retreive new svg map, should be something we do late or if we have time over BUT SAVE CURRENT IMPLEMENTATION
+if it goes bad
+
+3:(hard but needs probably to be done) structure main.js. Right now main.js is very cluttered, we should create functions for information panels so we can compress code and not create new code for each battle.
+AND general organization in all files.
+
+3:(Easy) add color for each country in the conflict or not(white=neutral, grey = axis and blue for allies), could be co implemented with implemntaton 2
+
+4:(not sure but probably moderate) Fog of war animation
+
+5:(easy) fix explosion animation to cover all of europe, just change x and y coordinates in function but needs to be tweaked with live server
+
+6:(hard/easy based on implementations) ADD MORE BATTLES
+
+7:(Easy) when clicking on battle, play gun sound(i think spaghetti western revolver shot is very nice but maybe not history accurate)
+
+8:(Moderate) when clicking with mouse on map, create explosion and add sound.
+
+9:(hard): add help section(MUST BE IMPLEMENTED) (The app has to have an interactive tutorial/help system. A static help page is not acceptable, neither is a pure text-based help system.)
+
+10:(easy) for some battle, add a video in info panel(MUST BE IMPLEMENTED)
+
+11:(Hard) make it workable on smaller screen(iphone)
+
+(also theese three from the project general requirements)
+12: The code has to be well documented according to the specifications in a separate page on this website. Non-documented applications will not be accepted. 
+
+13: The interface has to be multi-/bilingual or use externalized strings, e.g., using a dictionary (i.e., the text strings should not be mixed in with the code). 
+
+
