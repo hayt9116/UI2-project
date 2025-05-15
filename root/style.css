@@ -48,22 +48,12 @@ svg {
   padding-bottom: 5px;
 }
 
-.dunkirk{
+.battle-button {
   fill: red;
   cursor: pointer;
 }
 
-.dunkirk:hover{
-  fill: green;
-  cursor: pointer;
-}
-
-.berlin {
-  fill: red;
-  cursor: pointer;
-}
-
-.berlin:hover {
+.battle-button:hover {
   fill: green;
 }
 

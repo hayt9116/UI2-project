@@ -1,60 +1,60 @@
+import { battleDescriptions } from './battles.js';
+
 document.addEventListener("DOMContentLoaded", () => {
-    //Stores the svg and circle(Berlin) element from index
-    const svg = document.getElementById("map");
-    const berlin = document.querySelector(".berlin");
-    const dunkirk = document.querySelector(".dunkirk");
-    //save original viewbox before transformation
-    const originalViewBox = svg.getAttribute("viewBox");
-  
-    //wait for click on Berlin
-    berlin.addEventListener("click", (e) => {
-    // e.stopPropagation();
-        
-    //retrieves X and Y coordinates for Berlin
-      const cx = parseFloat(berlin.getAttribute("cx"));
-      const cy = parseFloat(berlin.getAttribute("cy"));
+  const svg = document.getElementById("map");
+  const originalViewBox = svg.getAttribute("viewBox");
+  const infoPanel = document.getElementById("infoPanel");
+  const spriteanim = document.getElementById("spriteanim");
 
-    //How much to zoom in the lower the value the more zoomed in
-      const zoomWidth = 200; 
+//TODO: ADD FUNCTION DESRIPTION
+  function updateInfoPanel(battleKey) {
+    const battle = battleDescriptions[battleKey];
+    if (battle) {
+      infoPanel.innerHTML = `
+        <h2>${battle.title}</h2>
+        <p>${battle.description}</p>
+      `;
+    }
+  }
+ // TODO: ADD FUNCTION DESRIPTION
+  function setupBattleCircle(className, battleKey, showSprite) {
+    const circle = document.querySelector(`.${className}`);
+
+    circle.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      const cx = parseFloat(circle.getAttribute("cx"));
+      const cy = parseFloat(circle.getAttribute("cy"));
+      const zoomWidth = 200;
       const zoomHeight = 200;
-    //calculate new viewbox
       const newViewBox = `${cx - zoomWidth / 2 - 30} ${cy - zoomHeight / 2} ${zoomWidth} ${zoomHeight}`;
-  
-      svg.setAttribute("viewBox", newViewBox);
-       document.getElementById("infoPanel").classList.remove("hidden"); 
-       document.getElementById("spriteanim").classList.remove("hidden");
-    });
 
-    dunkirk.addEventListener("click", (e) => {
-    // e.stopPropagation();
-        
-    //retrieves X and Y coordinates for Berlin
-      const cx = parseFloat(dunkirk.getAttribute("cx"));
-      const cy = parseFloat(dunkirk.getAttribute("cy"));
-
-    //How much to zoom in the lower the value the more zoomed in
-      const zoomWidth = 200; 
-      const zoomHeight = 200;
-    //calculate new viewbox
-      const newViewBox = `${cx - zoomWidth / 2 - 30} ${cy - zoomHeight / 2} ${zoomWidth} ${zoomHeight}`;
-  
       svg.setAttribute("viewBox", newViewBox);
-       document.getElementById("infoPanel").classList.remove("hidden"); 
+      infoPanel.classList.remove("hidden");
+      if (showSprite) spriteanim.classList.remove("hidden");
+
+      updateInfoPanel(battleKey);
     });
+  }
+
+  //TO ADD BATTLE EASILY
+  //1) Create infotext in battles.js
+  //2) create circle in svg
+  //3) add as below following setupbattlecircle
+  setupBattleCircle("berlin", "berlin", true);
+  setupBattleCircle("dunkirk", "dunkirk", false);
+  setupBattleCircle("ardenne-offensive","ardenne", false);
+  //
+
+//if click ON SVG MAP(not ocean) return to original viewbox
+  svg.addEventListener("click", () => {
+      svg.setAttribute("viewBox", originalViewBox);
+      infoPanel.classList.add("hidden");
+      spriteanim.classList.add("hidden");
     
-    //when click on something that is not the red circle, revert back to old viewbox and remove textbox
-    svg.addEventListener("click", (e) => {
-      
-      // if (!e.target.classList.contains(locations))
-      if (!(e.target.classList.contains('berlin')|| e.target.classList.contains('dunkirk')) ) {
-        svg.setAttribute("viewBox", originalViewBox);
-        // Hide the info panel
-         document.getElementById("infoPanel").classList.add("hidden");
-         document.getElementById("spriteanim").classList.add("hidden");
-      }
-    });
+  });
     
-    
+     // TODO: ADD FUNCTION DESRIPTION
     function spawnExplosion() {
         const explosionsGroup = document.getElementById("explosions");
       
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
           explosionsGroup.appendChild(particle);
         }
       }
+       // TODO: ADD FUNCTION DESRIPTION
       function scheduleExplosion() {
         // Run the explosion once website is opened
         spawnExplosion();
