@@ -8,8 +8,8 @@ export const battleDescriptions = {
         description: "A remarkable evacuation of Allied soldiers from the beaches of Dunkirk, France, during World War II."
     },
     ardenne: {
-        title: "Ardenne offensive of 1940? ja glum",
-        description: "Panzer through forest go fast around maginot line"
+        title: "Ardenne offensive",
+        description: "Last ditch attack by germany on western front"
     }
     
 };
