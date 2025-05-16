@@ -146,7 +146,41 @@ document.addEventListener("DOMContentLoaded", () => {
           currentFrame = (currentFrame + 1) % (maxFrame + 1);
         }, 300);
     };
-    
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default link behavior
+            const lang = el.getAttribute('data-lang');
+            fetchLanguageFile(lang);
+        });
+    });
+
+    // Load default language (English) on page load
+    fetchLanguageFile('en');
+
+    //Function that fetches translations from JSON file
+    function fetchLanguageFile(lang) {
+        const filePath = `${lang}.json`;
+
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Could not load language file: ${filePath}`);
+                }
+                return response.json();
+            })
+            .then(translations => {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[key]) {
+                        el.textContent = translations[key];
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading language file:', error);
+            });
+    }
 
   });
   
