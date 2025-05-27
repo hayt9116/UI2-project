@@ -59,15 +59,15 @@ svg {
 
 #infoPanel {
   position: absolute;
-  top: 50vh;           
-  left: 7vw;           
-  bottom: 20vh;        
-  width: 30vw;
+  top: 35%;           
+  left: 5%;           
+  width: 32%;
+  padding: 1%;
+  bottom: 1%;
+  font-size: 2vh;
   background-color: #ffffffee;
-  padding: 1rem;
   overflow-y: auto;
-  border: 20px solid #ff000d;
-  
+  border: 2vh solid #ff000d;
 }
 
 #spriteanim {
@@ -83,6 +83,22 @@ svg {
   border: 20px solid #ff000d;
   
 }
+
+/* potential other spriteanim
+#spriteanim {
+  position: absolute;
+  top: 35%;           
+  right: 5%;           
+  width: 32%;
+  padding: 1%;
+  bottom: 1%;
+  font-size: 2vh;
+  background-color: #ffffffee;
+  overflow-y: auto;
+  border: 2vh solid #ff000d;
+  
+}
+*/
 
 .hidden {
   display: none;
@@ -117,5 +133,7 @@ svg {
 footer {
   background-color: #e84d74;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px;
+  bottom: 0px;
+  width: 100%;
 }
