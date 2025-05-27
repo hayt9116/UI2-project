@@ -5,14 +5,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const originalViewBox = svg.getAttribute("viewBox");
   const infoPanel = document.getElementById("infoPanel");
   const spriteanim = document.getElementById("spriteanim");
+  let isEnglish = true;
+
+document.querySelector('[data-lang="en"]').addEventListener('click', () => {
+  isEnglish = true;
+});
+
+document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
+  isEnglish = false;
+});
+
 
 //TODO: ADD FUNCTION DESRIPTION
   function updateInfoPanel(battleKey) {
     const battle = battleDescriptions[battleKey];
-    if (battle) {
+    if (battle && isEnglish == true) {
       infoPanel.innerHTML = `
-        <h2>${battle.title}</h2>
-        <p>${battle.description}</p>
+        <h2>${battle.title_eng}</h2>
+        <p>${battle.description_eng}</p>
+      `;
+    }
+    else{
+        infoPanel.innerHTML = `
+        <h2>${battle.title_swe}</h2>
+        <p>${battle.description_swe}</p>
       `;
     }
   }
