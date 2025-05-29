@@ -17,10 +17,12 @@
           <li><a data-i18n="swe" href="#" data-lang="sv"></a></li>
         <li><a data-i18n="home" href="index.html"></a></li>
         <li><a data-i18n="in works" href="nysida.html"></a></li>
-        <li data-i18n="help"></li>
+        <li><a data-i18n="help" href="#" id="help"></a></li>
       </ul>
     </nav>
   </header>
+
+  <div id="tooltip" class="tooltip hidden">Click the highlighted battle to learn more about it.</div>
 
   <div class="svg-container">
     <svg id="wrapper" viewBox="0 0 1000 100" preserveAspectRatio="xMinYMin" height="777.9" width="1000" style="background-color: rgb(255, 255, 255);"><metadata>
@@ -29,6 +31,9 @@
     <circle id="important" class="battle-button dunkirk" cx="460" cy="445" r="5" stroke="black" stroke-width="1"/>
     <circle id="important" class="battle-button ardenne-offensive" cx="519" cy="459" r="5" stroke="black" stroke-width="1"/>
     <g id="explosions"></g>
+
+    <g id="wateranim"></g>
+
   </svg>
       
   <div id="infoPanel" class="infoPanel hidden"></div>
@@ -43,6 +48,11 @@
   </div>
 
   <h1 data-i18n="music">Background music</h1>
+
+  <audio id="gun_fire">
+    <source src="gun_fire_sound.mp3" type="audio/mpeg">
+    Mp3 audio is not supported in this browser.
+  </audio>
 
   <!-- Audio player -->
   <audio controls autoplay muted loop id="war">

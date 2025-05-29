@@ -32,12 +32,18 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
       `;
     }
   }
+
+   var gunfire = new Audio('gun_fire_sound.mp3');
+   gunfire.volume = 0.05
+
  // TODO: ADD FUNCTION DESRIPTION
   function setupBattleCircle(className, battleKey, showSprite) {
     const circle = document.querySelector(`.${className}`);
 
     circle.addEventListener("click", (e) => {
       e.stopPropagation();
+      gunfire.play();
+      gunfire.loop = true;
 
       const cx = parseFloat(circle.getAttribute("cx"));
       const cy = parseFloat(circle.getAttribute("cy"));
@@ -58,8 +64,8 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
   //2) create circle in svg
   //3) add as below following setupbattlecircle
   setupBattleCircle("berlin", "berlin", true);
-  setupBattleCircle("dunkirk", "dunkirk", false);
-  setupBattleCircle("ardenne-offensive","ardenne", false);
+  setupBattleCircle("dunkirk", "dunkirk", true);
+  setupBattleCircle("ardenne-offensive","ardenne", true);
   //
 
 //if click ON SVG MAP(not ocean) return to original viewbox
@@ -67,6 +73,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
       svg.setAttribute("viewBox", originalViewBox);
       infoPanel.classList.add("hidden");
       spriteanim.classList.add("hidden");
+      gunfire.pause()
     
   });
     
@@ -197,6 +204,28 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
                 console.error('Error loading language file:', error);
             });
     }
+
+  //Tutorial
+  const button = document.getElementById('help');
+  const battle = document.querySelector('.battle-button.berlin');
+  button.addEventListener('click', () => {
+  
+  battle.classList.add('flashing-button'); // Start flashing
+
+  const tooltip = document.getElementById('tooltip');
+
+  // Highlight the button and show tooltip
+  button.classList.add('highlight');
+  tooltip.classList.remove('hidden');
+
+  // Click to proceed
+  battle.addEventListener('click', () => {
+    // alert('Tutorial complete!');
+    battle.classList.remove('flashing-button')
+    button.classList.remove('highlight');
+    tooltip.classList.add('hidden');
+    });
+  });
 
   });
   
