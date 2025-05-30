@@ -63,8 +63,8 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
   //1) Create infotext in battles.js
   //2) create circle in svg
   //3) add as below following setupbattlecircle
-  setupBattleCircle("berlin", "berlin", true);
-  setupBattleCircle("dunkirk", "dunkirk", true);
+  setupBattleCircle("berlin", "berlin", false);
+  setupBattleCircle("dunkirk", "dunkirk", false);
   setupBattleCircle("ardenne-offensive","ardenne", true);
   //
 
@@ -117,6 +117,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
         setTimeout(scheduleExplosion, delay);
       }      
       // Schedule three separate explosions to simulate even more randomness
+      scheduleExplosion();
       scheduleExplosion();
       scheduleExplosion();
       scheduleExplosion();
