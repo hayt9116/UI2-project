@@ -206,27 +206,66 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
             });
     }
 
-  //Tutorial
-  const button = document.getElementById('help');
-  const battle = document.querySelector('.battle-button.berlin');
-  button.addEventListener('click', () => {
-  
+const button = document.getElementById('help');
+const battle = document.querySelector('.battle-button.berlin');
+const marker = document.getElementById('marker');
+const tooltip = document.getElementById('tooltip');
+marker.classList.add('hidden')
+
+//Function that moves a marker towards a button.
+function moveMarker() {
+  marker.style.transition = 'top 5s ease, left 5s ease';
+  const rect = battle.getBoundingClientRect();
+
+  //This is to ensure correct alignment on smaller screens.
+  if (window.innerWidth <= 480) {
+    marker.style.top = `${rect.top + window.scrollY - 146}px`;
+    marker.style.left = `${rect.left + window.scrollX - 10}px`;
+  } else {
+    marker.style.top = `${rect.top + window.scrollY - 155}px`;
+    marker.style.left = `${rect.left + window.scrollX - 30}px`;
+  }
+}
+
+//Reset the markers position and set transition/animation speed to 0.1s.
+function resetMarker() {
+  marker.style.transition = 'top 0.1s ease, left 0.1s ease';
+  marker.style.top = `0px`;
+  marker.style.left = `0px`;
+}
+
+//Function to loop the marker animation.
+function loopMarker() {
+  resetMarker();
+
+  marker.offsetHeight; // force reflow
+
+  setTimeout(() => {
+    moveMarker();
+  }, 500);
+}
+
+let loopInterval;
+
+//Eventlistener for clicking the help button.
+button.addEventListener('click', () => {
+  // Start looping animation immediately
+  loopMarker();
+
+  marker.classList.remove('hidden')
+  //Set the loop interval to 6s.
+  loopInterval = setInterval(loopMarker, 6000);
+
   battle.classList.add('flashing-button'); // Start flashing
-
-  const tooltip = document.getElementById('tooltip');
-
-  // Highlight the button and show tooltip
-  button.classList.add('highlight');
   tooltip.classList.remove('hidden');
 
-  // Click to proceed
   battle.addEventListener('click', () => {
-    // alert('Tutorial complete!');
-    battle.classList.remove('flashing-button')
-    button.classList.remove('highlight');
+    clearInterval(loopInterval);  // Stop the loop when tutorial is done
+    battle.classList.remove('flashing-button');
     tooltip.classList.add('hidden');
-    });
-  });
+    marker.classList.add('hidden')
+  }, { once: true }); // Ensure listener runs once
+});
 
   });
   

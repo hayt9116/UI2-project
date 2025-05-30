@@ -8,5 +8,6 @@
     "help": "Help",
     "music": "Background music",
     "back to top": "Back to the top?",
-    "click here": "Click here!"
+    "click here": "Click here!",
+    "tooltip": "Click on the highlighted battle to learn more about it."
 }
