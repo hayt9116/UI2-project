@@ -1,3 +1,17 @@
+/*
+
+File: style.css
+
+Authors: Carl-Henrik Ytterfelt Martinsson, Hans-Eskil Ytterfelt Martinsson, Markus Eriksson
+
+This css sheet is the main styling of the index file and thus the main page
+*/
+
+
+
+/* ELEMENT DEFINITIONS */
+
+/* Basic CSS styling to make it aestethically pleasing */
 * {
   margin: 0;
   padding: 0;
@@ -12,36 +26,25 @@ header {
   padding: 4vh;
 }
 
+footer {
+  background-color: #e84d74;
+  text-align: center;
+  bottom: 0px;
+  width: 100%;
+}
+
+/* Making the background of SVG ocean color  */
 svg {
   background-color: #7fcdff !important;
 }
 
-#German_Reich, 
-#Kingdom_of_Italy
-{
-  fill: #4B4B4B !important;
-}
-
-#French_Republic,
-#Republic_of_Poland,
-#United_Kingdom
-{
-  fill: #000080 !important;
-}
-
+/* CLASS DEFINITIONS */
+/* Makes the infopanels not overflow (Now infopanels positions based on svg container and not the entire body) */
 .svg-container {
-  flex-grow: 1;
-  width: 100%;
-  height: 100%;
   position: relative;
 }
 
-#wrapper {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
+/* Makes the headers links appear properly */
 .länk {
   list-style: none;
   display: flex;
@@ -49,7 +52,7 @@ svg {
   justify-content: space-around;
   padding-top: 10px;
   padding-bottom: 5px;
-  z-index: 1100;
+
 }
 
 .battle-button {
@@ -61,13 +64,90 @@ svg {
   fill: green;
 }
 
+.marker {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 150%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Defines how the artillery explosion animation behaves, 
+animation for dirtblast keyframe means that we use the dirtblast keyframe controlling the opacity and radius of the circles
+and cubic bezier(X1, Y1, X2, Y2) means how fast the animation behaves at start and finish, 
+With these settings we get that it starts slower with a delayed response but then quickly accelerate towards the end
+thus creating a more realistic artillery explosion.
+*/
+.explosion-particle {
+  fill: #4e3e2c; 
+  opacity: .01;
+  animation: dirtBlast 1.5s cubic-bezier(0.8, 0, 0.3, 1) backwards
+}
+
+.tooltip {
+  position: absolute;
+  top: 10%;           
+  left: 50%;           
+  bottom: 20%;        
+  width: 20%;
+  height: 25%;
+  background-color: #ffffff;
+  padding: 1rem;
+  overflow-y: auto;
+  border: 10px solid #ff000d;
+}
+
+.flashing-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: flash 1s infinite;
+}
+
+/* ID DEFINITIONS */
+
+/* Overrides the SVG:s color definitions with !important and colors italy and germany as grey*/
+#German_Reich, 
+#Kingdom_of_Italy
+{
+  fill: #4B4B4B !important;
+}
+
+/* Same premise here but with blue*/
+#French_Republic,
+#Republic_of_Poland,
+#United_Kingdom
+{
+  fill: #000080 !important;
+}
+
+/* Mekes the svg file take up the whole screen*/
+#wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* How infopanel appear
+This styling is very important for the scaling of smaller devices
+By using % we dont have to make a separate styling for smaller devices
+however a TODO if we had more time is to create a dedicated css style for smaller devices 
+but this works but could have a more dedicated design
+
+Overflow Y makes it scrollable if more text than space
+*/
 #infoPanel {
   position: absolute;
   top: 35%;           
   left: 5%;           
   width: 32%;
   padding: 1%;
-  bottom: 1%;
+  bottom: 7%;
   font-size: 2vh;
   background-color: #ffffffee;
   overflow-y: auto;
@@ -104,16 +184,11 @@ svg {
 }
 */
 
-.hidden {
-  display: none;
-}
+/* KEYFRAMES DEFINITIONS */
 
-.explosion-particle {
-  fill: #4e3e2c; 
-  opacity: .01;
-  animation: dirtBlast 1.5s cubic-bezier(0.8, 0, 0.3, 1) backwards
-}
-
+/* Changes the radius and opacity of dirtblast circles based on what timeframe the animation is in
+Final keyframe 100% makes the circles actually move outwards thus actually flying away and then dissapear 
+*/
 @keyframes dirtBlast {
   0% {
     r: 0;
@@ -134,36 +209,6 @@ svg {
   }
 }
 
-footer {
-  background-color: #e84d74;
-  text-align: center;
-  bottom: 0px;
-  width: 100%;
-}
-
-.tooltip {
-  position: absolute;
-  top: 10%;           
-  left: 50%;           
-  bottom: 20%;        
-  width: 20%;
-  height: 25%;
-  background-color: #ffffff;
-  padding: 1rem;
-  overflow-y: auto;
-  border: 10px solid #ff000d;
-}
-
-.flashing-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #ffcc00;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  animation: flash 1s infinite;
-}
-
 @keyframes flash {
   0%, 100% {
     opacity: 1;
@@ -173,12 +218,7 @@ footer {
   }
 }
 
-.marker {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 150%;
-}
+/* MEDIA DEFINITIONS*/
 
 /* force different font size of tutorial marker on smaller screen sizes */
 @media (max-width: 480px) {
@@ -186,3 +226,7 @@ footer {
     font-size: 50%;
   }
 }
+
+/*
+END of file style.css
+*/
