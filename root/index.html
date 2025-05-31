@@ -1,3 +1,21 @@
+<!---
+File: index.html
+
+This file contains the HTML structure to provide a website with an SVG map of the european front of WW2 and displaying important battles during the conflict that a user can click on for further information.
+
+Author: Carl-Henrik Ytterfelt Martinsson, Hans-Eskil Ytterfelt Martinsson, Markus Eriksson
+
+Requires the following files:
+
+main.js
+style.css
+sv.JSON
+war.mp3
+gun_fire_sound.mp3
+
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +26,7 @@
 </head>
 
 <body>
+  <!-- Basic header structure with three links for language and help support -->
   <header>
     <h1 data-i18n="WW2 map with battles"></h1>
     <p data-i18n="Click on circle"></p>
@@ -23,7 +42,14 @@
   
 
   
+<!-- The SVG map used to display europe and its borders.
+ Retrieved from https://historicalmapchart.net/europe-world-war-2.html
+ and modified by us for our purpose.
 
+ The SVG is mostly coordinates that draw out distinct countries, oceans and borders so dont stare yourself blindly by trying to understand what all of the numbers and styling means the important aspect is at the very top and bottom where we have added our own drawings, animation and placing the svg map a class and ID for styling.
+
+ The coloring of GB, France, Poland, Germany, Italy and the ocean in the SVG map are overrided and colored in style.css.
+-->
   <div class="svg-container">
     <div class="marker" id="marker">&#x1F449;</div>
     <svg id="wrapper" viewBox="0 0 1000 100" preserveAspectRatio="xMinYMin" height="777.9" width="1000" style="background-color: rgb(255, 255, 255);"><metadata>
@@ -36,8 +62,12 @@
     <g id="wateranim"></g>
 
   </svg>
-      
-  <div id="infoPanel" class="infoPanel hidden"></div>
+  
+  <!-- Creates a div for the infopanels used when clicking on a battle the ID uniquely identifies the infoPanel and styles it based on that
+    while the class can be given to any number of divs to simply hide the infopanel. What the infopanel actually shows in terms of info is done in main.js but it is in theory the same infopanel for each battle. 
+   -->
+  <div id="infoPanel" class="hidden"></div>
+
   <div id="tooltip" class="tooltip hidden" data-i18n="tooltip"></div>
 
     <div id="spriteanim" class="infoPanel hidden">
@@ -71,3 +101,8 @@
   <script type="module" src="main.js"></script>
 </body>
 </html>
+
+<!---
+END of file index.html
+-->
+

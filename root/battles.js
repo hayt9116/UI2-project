@@ -35,3 +35,6 @@ export const battleDescriptions = {
     }
     
 };
+//************
+// END of file battles.js
+//************
