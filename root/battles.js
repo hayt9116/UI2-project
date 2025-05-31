@@ -1,3 +1,16 @@
+/**
+ * File: battles.js
+ * 
+ * This module exports a JavaScript object called "battleDescriptions".
+ *  Each key in the object represents a unique battle (berlin, dunkirk, ardenne).
+ *  Each battle entry includes a title and desscription in english and swedish thus currently allowing support for two languages
+ *  
+ *  If you want to add a battle then give it a key(so main.js can use it), title(for infopanel header) and description(Main text of battle)
+ *  If more languages want to be added then simply add title_language and description_language, however this then also has to be programmed correctly in main.js to fully work
+ * 
+ * Authors: Carl-Henrik Ytterfelt Martinsson, Hans-Eskil Ytterfelt Martinsson, Markus Eriksson
+ */
+
 export const battleDescriptions = {
     berlin: {
         title_eng: "Battle of Berlin",
