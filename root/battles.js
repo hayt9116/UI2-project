@@ -2,7 +2,7 @@
  * File: battles.js
  * 
  * This module exports a JavaScript object called "battleDescriptions".
- *  Each key in the object represents a unique battle (berlin, dunkirk, ardenne).
+ *  Each key in the object represents a unique battle id used in main.js function updateInfoPanel(battlekey) and BattleCircle, where battlekey is berlin, dunkirk or ardenne.
  *  Each battle entry includes a title and desscription in english and swedish thus currently allowing support for two languages
  *  
  *  If you want to add a battle then give it a key(so main.js can use it), title(for infopanel header) and description(Main text of battle)
