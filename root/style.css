@@ -59,15 +59,18 @@ svg {
 
 }
 
+/* Simply colors the battle buttons red. */
 .battle-button {
   fill: red;
   cursor: pointer;
 }
 
+/* Makes the battle buttons green when hovering over them. */
 .battle-button:hover {
   fill: green;
 }
 
+/* Settings for the position and size of the tutorial marker. */
 .marker {
   position: absolute;
   top: 10px;
@@ -75,6 +78,7 @@ svg {
   font-size: 150%;
 }
 
+/* This is being used frequently to hide and reveal certain panels or markers etc. */
 .hidden {
   display: none;
 }
@@ -91,6 +95,7 @@ thus creating a more realistic artillery explosion.
   animation: dirtBlast 1.5s cubic-bezier(0.8, 0, 0.3, 1) backwards
 }
 
+/* Tooltip panel that displays tutorial text. */
 .tooltip {
   position: absolute;
   top: 10%;           
@@ -104,6 +109,8 @@ thus creating a more realistic artillery explosion.
   border: 10px solid #ff000d;
 }
 
+/* Makes it so a button flashes using animation flash (defined further down) with 
+   an interval of one second. */
 .flashing-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -158,6 +165,7 @@ Overflow Y makes it scrollable if more text than space
   border: 2vh solid #ff000d;
 }
 
+/* Similiar settings to infopanel, but this one is used for the sprite animation. */
 #spriteanim {
   position: absolute;
   top: 50%;           
@@ -213,6 +221,8 @@ Final keyframe 100% makes the circles actually move outwards thus actually flyin
   }
 }
 
+/* The flash animation that is used in flashing button. It makes an element fade 
+   in and out, which creates a flashing effect. */
 @keyframes flash {
   0%, 100% {
     opacity: 1;
@@ -224,7 +234,7 @@ Final keyframe 100% makes the circles actually move outwards thus actually flyin
 
 /* MEDIA DEFINITIONS*/
 
-/* force different font size of tutorial marker on smaller screen sizes */
+/* Force different font size of tutorial marker on smaller screen sizes */
 @media (max-width: 480px) {
   #marker {
     font-size: 50%;

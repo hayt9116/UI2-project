@@ -15,7 +15,7 @@
 
 import { battleDescriptions } from './battles.js';
 
-//Waits before the entire html is loaded completely before operating.
+// Waits before the entire html is loaded completely before operating.
 
 document.addEventListener("DOMContentLoaded", () => {
   // Retrieves the SVG maps map and original viewbox(for reverting zooming)
@@ -60,8 +60,9 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
     }
   }
   // TODO: MOVE THIS SOMEPLACE ELSE
-   var gunfire = new Audio('gun_fire_sound.mp3');
-   gunfire.volume = 0.05
+  // Loads gunfire sounds to a variable and sets the volume.
+  var gunfire = new Audio('gun_fire_sound.mp3');
+  gunfire.volume = 0.05
 
  // TODO: ADD FUNCTION DESRIPTION
  // Function to set up an important battle with correct data on index.html:s SVG map and handles zooming feature
@@ -165,7 +166,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
       // With this function we now can call an explosion that appears randomly on the map with random timing(except for the beginning)
       // After testing we decided that four simultaneous explosions loops are needed to create an aestetically pleasing group animation of explosions
       // with too few they felt lackluster and not that interesting
-      // with to many they create lag and make the map cluttered
+      // with too many they create lag and make the map cluttered
       // With 4 we get the best of both worlds, enough that it feels like they matter but not to many that they take up all of the map.
 
       scheduleExplosion();
@@ -173,29 +174,37 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
       scheduleExplosion();
       scheduleExplosion();
 
-      //Adjust volume of background music
+      // Adjust volume of background music
       var audio = document.getElementById("war");
       audio.volume = 0.07;
 
-      //initiate image from URL
+      // Initiates the image/sprite sheet from URL
       const img = new Image();
       img.src = 'https://thumbs.dreamstime.com/b/us-soldier-shooting-sprite-vector-cartoon-animation-sequence-sheet-55787397.jpg?w=768';
   
+      // Constants to fetch the canvas div from index.html and get canvas context 
+      // to be able to draw, or in this case, create a simple sprite animation.
       const canvas = document.getElementById("myCanvas");
       const ctx = canvas.getContext("2d");
   
+      // Constants for the number of rows and columns of the sprite sheet. This is
+      // needed to be able to divide the sheet into sections that contain each sprite.
+      // Scale constant is used for scaling the size of the sprite animation
+      // correctly.
       const numColumns = 2;
       const numRows = 2;
       const scale = 2.5;
       let currentFrame = 0;
   
-      //Load the image
+      // Loads the image/sprite sheet
       img.onload = function() {
         const frameWidth = img.width / numColumns;
         const frameHeight = img.height / numRows;
         const maxFrame = numColumns * numRows - 1;
   
-        //Interval/animation function
+        // Interval/animation function. This switches between the different sprite 
+        // sheet sections with an interval of 300ms. This creates an animation
+        // effect, where each sprite image of the sprite sheet is displayed briefly.
         setInterval(function () {
           
           // Calculate row and column for the current frame
@@ -205,7 +214,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
           // Clear canvas
           ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-          // Draw current frame
+          // Draws the current frame, which is one section of the sprite sheet.
           ctx.drawImage(
             img,
             column * frameWidth,
@@ -217,15 +226,20 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
             frameHeight / scale
           );
   
-          // Advance frame
+          // Go to next frame (next sprite image in the sprite sheet).
           currentFrame = (currentFrame + 1) % (maxFrame + 1);
         }, 300);
     };
 
+    // This function is needed to translate the parts of the website using two JSON
+    // files, one for english text and the other for the swedish translations.
     document.querySelectorAll('[data-lang]').forEach(el => {
         el.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior
+            // Prevent default link behavior (so the page does not reload on click).
+            e.preventDefault(); 
+            // The language button(swedish or english that the user clicks on).
             const lang = el.getAttribute('data-lang');
+            // Fetch the corresponding JSON file.
             fetchLanguageFile(lang);
         });
     });
@@ -237,6 +251,9 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
     function fetchLanguageFile(lang) {
         const filePath = `${lang}.json`;
 
+        // Search for and fetch the correct JSON file, then fetch the translation
+        // by looking for the 'data-i18n' tag from index.html. And then some 
+        // error catching if something goes wrong when trying to fetch JSON files.
         fetch(filePath)
             .then(response => {
                 if (!response.ok) {
@@ -257,18 +274,21 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
             });
     }
 
+// Create constants needed for the help/tutorial section.
 const button = document.getElementById('help');
 const battle = document.querySelector('.battle-button.berlin');
 const marker = document.getElementById('marker');
 const tooltip = document.getElementById('tooltip');
 marker.classList.add('hidden')
 
-//Function that moves a marker towards a button.
+// Function that moves the marker from index.html towards a button (berlin button).
 function moveMarker() {
+  // Set the animation interval (time it takes for tutorial marker to reach destination).
   marker.style.transition = 'top 5s ease, left 5s ease';
   const rect = battle.getBoundingClientRect();
 
-  //This is to ensure correct alignment on smaller screens.
+  // This is to ensure correct marker alignment for the end location on smaller 
+  // screens. Otherwise, the marker points to a different part of the svg map.
   if (window.innerWidth <= 480) {
     marker.style.top = `${rect.top + window.scrollY - 146}px`;
     marker.style.left = `${rect.left + window.scrollX - 10}px`;
@@ -278,45 +298,55 @@ function moveMarker() {
   }
 }
 
-//Reset the markers position and set transition/animation speed to 0.1s.
+// Function that resets the markers position and set transition/animation speed to 
+// 0.1s. This is done by accessing and changing css attributes of the marker.
 function resetMarker() {
   marker.style.transition = 'top 0.1s ease, left 0.1s ease';
   marker.style.top = `0px`;
   marker.style.left = `0px`;
 }
 
-//Function to loop the marker animation.
+// Function to loop the marker animation by resetting its location.
 function loopMarker() {
   resetMarker();
 
-  marker.offsetHeight; // force reflow
+  // Forces reflow/apply layout changes.
+  marker.offsetHeight; 
 
   setTimeout(() => {
     moveMarker();
   }, 500);
 }
 
+// Initialize loopinterval variable.
 let loopInterval;
 
-//Eventlistener for clicking the help button.
+// Eventlistener for clicking the help button.
 button.addEventListener('click', () => {
   // Start looping animation immediately
   loopMarker();
 
+  // Reveal the marker.
   marker.classList.remove('hidden')
-  //Set the loop interval to 6s.
+  // Set the loop interval to 6s, since it takes 5s for the marker to reach the 
+  // destination.
   loopInterval = setInterval(loopMarker, 6000);
 
-  battle.classList.add('flashing-button'); // Start flashing
+  // Starts a flashing animation on the Berlin button.
+  battle.classList.add('flashing-button'); 
+  // Reveal the tooltip.
   tooltip.classList.remove('hidden');
 
   battle.addEventListener('click', () => {
-    clearInterval(loopInterval);  // Stop the loop when tutorial is done
+    // Stop the marker loop when tutorial is done/Berlin is clicked.
+    clearInterval(loopInterval);  
+    // Hide tooltip and marker. Remove flashing button effect.
     battle.classList.remove('flashing-button');
     tooltip.classList.add('hidden');
     marker.classList.add('hidden')
-  }, { once: true }); // Ensure listener runs once
-});
+    // Ensure the listener only runs once.
+    }, { once: true }); 
+  });
 
   });
 
