@@ -228,13 +228,14 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
         }, 300);
     };
 
-    // This function is needed to translate the parts of the website using two JSON
-    // files, one for english text and the other for the swedish translations.
+    // This function is needed to translate parts of the website using two JSON
+    // files, one for english text (en.JSON) and the other for the swedish 
+    // translations (sv.JSON).
     document.querySelectorAll('[data-lang]').forEach(el => {
         el.addEventListener('click', function (e) {
-            // Prevent default link behavior (so the page does not reload on click).
+            // Prevent default link behavior(so the page does not reload on click).
             e.preventDefault(); 
-            // The language button(swedish or english that the user clicks on).
+            // The language button (swedish or english that the user clicks on).
             const lang = el.getAttribute('data-lang');
             // Fetch the corresponding JSON file.
             fetchLanguageFile(lang);
