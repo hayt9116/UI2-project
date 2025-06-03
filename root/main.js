@@ -59,12 +59,12 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
       `;
     }
   }
-  // TODO: MOVE THIS SOMEPLACE ELSE
+
   // Loads gunfire sounds to a variable and sets the volume.
   var gunfire = new Audio('gun_fire_sound.mp3');
   gunfire.volume = 0.05
 
- // TODO: ADD FUNCTION DESRIPTION
+
  // Function to set up an important battle with correct data on index.html:s SVG map and handles zooming feature
  // classname: name of Circle-class from the svg map that is going to be displayed 
  // battlekey: key to retreive correct data for infopanels.
@@ -98,7 +98,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
 
   //TO ADD BATTLE EASILY(GUIDE)
   //1) Create a battle in battles.js with english and swedish translation
-  //2) create circle in SVG
+  //2) create circle in SVG with correct tags and coordinates
   //3) add as below following setupbattlecircle
   BattleCircle("berlin", "berlin", false);
   BattleCircle("dunkirk", "dunkirk", false);
@@ -114,14 +114,11 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
     
   });
     
-     // TODO: ADD FUNCTION DESRIPTION
-     // Function to create an explosion animation on the map
-     // 
+     // Function that creates an explosion animation on the map
     function spawnExplosion() {
         const explosionsGroup = document.getElementById("explosions");
       
         // Base coordinates for explosions(Somwhere in this area which is most of germany and parts of western and eastern europe):
-        //TODO: zero in coordinates for better area 
         const cx = 450 + Math.random() * 350;
         const cy = 350 + Math.random() * 200;
       
@@ -154,7 +151,7 @@ document.querySelector('[data-lang="sv"]').addEventListener('click', () => {
         }
       }
 
-       // Function to actually call the spawnexplosion, this is done to call them separately and make it seem that the explosions appear randomly on the map
+       // Function to actually call the explosion and draw it on the map in a random fashion.
       function scheduleExplosion() {
         // Run the explosion when called
         spawnExplosion();
